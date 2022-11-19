@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import {
     ResponsiveContainer,
     BarChart,
@@ -10,19 +10,15 @@ import {
 import "./chartFrequence.css";
 import CustomToolTip from "./CustomToolTip";
 import axios from "axios";
-import { useSearchParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
+import DepartementService from "../../services/departement.service";
 
 function ChartPerformance() {
     const [data, setData] = useState(null);
-    const [searchParams] = useSearchParams();
-
-    let deptId = searchParams.get("id")
-    React.useEffect(() => {
-        axios.get("http://127.0.0.1:5000/api/departement/num=0" + deptId)
-            .then((response) => {
-                setData(response.data.json());
-            });
-    }, []);
+    let deptId  = useParams().id;
+    useEffect(() => {
+        DepartementService.getDepartementChartById(deptId).then(r => setData(r.data));
+    });
 
 
   return (
