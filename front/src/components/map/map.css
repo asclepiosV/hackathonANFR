@@ -1,0 +1,20 @@
+.map{
+    display: flex;
+    justify-content: center;
+}
+.svg-map {
+    width: 70vh;
+    height: auto;
+    stroke: var(--white);
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round; }
+.svg-map__location {
+    fill: var(--bleu);
+    cursor: pointer; }
+.svg-map__location:focus, .svg-map__location:hover {
+    fill: var(--violet);
+    outline: 0; }
+.svg-map__location[aria-checked=true] {
+    fill: var(--violet);
+}

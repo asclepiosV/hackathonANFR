@@ -1,9 +1,15 @@
 import React from 'react';
-import './map.css'
+import France from "@svg-maps/france.departments";
+import CheckboxSVGMap from "./checkbox-svg-map";
+import './map.css';
+
+
 
 function Map() {
     return (
-        <div></div>
+        <div className={"map"}>
+            <CheckboxSVGMap map={France} />
+        </div>
     );
 }
 
