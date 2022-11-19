@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Map from "./components/map/Map";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
-import Region from "./components/chart/ChartBande";
+import Departement from "./components/chart/ChartBande";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Header />
       <Routes>
         <Route path={"/"} element={<Map />} />
-        <Route path={"/region"} element={<Region />} />
+        <Route path={"/departement/:id"} element={<Departement />} />
       </Routes>
       <Footer />
     </Router>
