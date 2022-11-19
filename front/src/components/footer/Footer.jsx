@@ -1,10 +1,10 @@
 import React from 'react';
-import './map.css'
+import './footer.css'
 
-function Map() {
+function Footer() {
     return (
         <div></div>
     );
 }
 
-export default Map;
+export default Footer;
