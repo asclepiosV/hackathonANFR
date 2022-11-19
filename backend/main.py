@@ -8,7 +8,7 @@ CORS(app, support_credentials=True)
 
 def getOccurenceFREQ(departement,option):
 
-    df = pd.read_csv("data/Challenge 1_visu occupation spectrale/2020_12_31_Extract.csv", sep=";",low_memory=False,
+    df = pd.read_csv("data/2020_12_31_Extract.csv", sep=";", low_memory=False,
                      usecols=["CD_DPT", "ID_INTERV_FREQ","ID_SYSTEME"]
                      )
     if option == 0:
