@@ -34,10 +34,8 @@ def NombreParMois(frequence):
         f = os.path.join(path, filename)
         if filename[0].isdigit() and os.path.isfile(f):
             df = pd.read_csv(path + filename, sep=";", low_memory=False)
-            df = df.loc[(df['ID_INTERV_FREQ']) == frequence]
-            df = df[['ID_INTERV_FREQ']].count()
-            df = df.item()
-            array.append({'Date': filename[0:10], 'Number': df})
+            count = sum(df['ID_INTERV_FREQ'] == int(frequence))
+            array.append({'Date': filename[0:10], 'Number': count})
     with open("data.json", "w") as outfile:
         json.dump(array, outfile)
 
@@ -69,8 +67,8 @@ def getRegion(number):
 @cross_origin(supports_credentials=True)
 def getBande(number):
     # number_band = request.args.get('bande', default=0, type=int)
-    number_band = number
-    dictionnary = NombreParMois(number_band)
+    number = int(number)
+    dictionnary = NombreParMois(number)
     return dictionnary
 
 
