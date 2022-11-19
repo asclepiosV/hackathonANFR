@@ -1,50 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import {
     ResponsiveContainer,
-    AreaChart,
     BarChart,
     Bar,
-    // CartesianGrid,
     XAxis,
     YAxis,
     Tooltip,
-    Area
   } from "recharts";
 import "./chartFrequence.css";
 import CustomToolTip from "./CustomToolTip";
-import fakeData from "../../data/fakeData2.json";
+import axios from "axios";
+import { useSearchParams } from "react-router-dom";
 
 function ChartPerformance() {
-  //const [data, setData] = useState(fakeData);
-  /* const [data, setData] = useState();
+    const [data, setData] = useState(null);
+    const [searchParams] = useSearchParams();
 
-  function fetchData() {
-    return fetch("http://127.0.0.1:3000/api/performance")
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Unable to contact the server");
-      })
-      .then((data) => setData(data))
-      .catch((error) => {
-        console.log(error);
-        setData(fakeData);
-      });
-  } */
+    let deptId = searchParams.get("id")
+    React.useEffect(() => {
+        axios.get("http://127.0.0.1:5000/api/departement/num=0" + deptId)
+            .then((response) => {
+                setData(response.data.json());
+            });
+    }, []);
 
-/*   console.log(data);
 
-  useEffect(() => {
-    fetchData();
-  }, []); */
   return (
     <div className="chartPerformance">
       <ResponsiveContainer width="100%" height={500}>
         <BarChart
           width="90%"
           height={500}
-          data={fakeData}
+          data={data}
           //stackOffset="expand"
           margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
         >
