@@ -3,12 +3,13 @@ import "./chartFrequence.css";
 import {useParams} from "react-router-dom";
 import DepartementService from "../../services/departement.service";
 import Plot from "react-plotly.js";
+import Loader from "../loader/Loader";
 
 const  ChartPerformance = () => {
     const [dataset,setDataset]=useState(null);
     let deptId  = useParams().id;
     const getData=()=>{
-        DepartementService.getDepartementChartById(deptId)
+        DepartementService.getDepartementChartById(deptId, 0)
             .then(function(response){
                 return response;
             })
@@ -31,6 +32,12 @@ const  ChartPerformance = () => {
                 layout={{width:1000, height: 500, title:'Enregistrements'}}
                 onClick={() => console.debug("onClick")}
             />
+
+        )
+    }
+    else{
+        return (
+            <Loader/>
         )
     }
 }
