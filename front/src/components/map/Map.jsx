@@ -13,6 +13,7 @@ export default function Map(){
 
     return (
         <div className={"map"}>
+            <h1>Carte d'enregistrements</h1>
             <SVGMap map={France} onLocationClick={getLocation}/>
         </div>
     );

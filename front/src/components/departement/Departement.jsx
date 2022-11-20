@@ -34,6 +34,7 @@ export default function Map(){
             setFast(1)
         }
         else setFast(0)
+        setDataset(null)
         getData();
     }
 
@@ -42,6 +43,7 @@ export default function Map(){
             setTel(1)
         }
         else setTel(0)
+        setDataset(null)
         getData();
     }
 
@@ -74,9 +76,10 @@ export default function Map(){
         <div className={'departement'}>
             {departement ? <h1>{departement}</h1> : <h1></h1>}
             <div className={'link'}>
-                { fast === 1 ? <div className={'button'} onClick={changeFast}>Avoir un traiement plus précis</div> : <div className={'button'}>Avoir un traitement plus rapide</div>}
-                { tel === 0 ? <div className={'button'} onClick={changeTel}>Voir le réseau téléphonique</div> : <div className={'button'}>Ne pas voir le réseau téléphonique</div>}
+                { fast === 1 ? <div className={'button'} onClick={changeFast}>Avoir un traitement plus précis</div> : <div className={'button'}  onClick={changeFast}>Avoir un traitement plus rapide</div>}
+                { tel === 0 ? <div className={'button'} onClick={changeTel}>Voir le réseau téléphonique</div> : <div className={'button'} onClick={changeTel}>Ne pas voir le réseau téléphonique</div>}
             </div>
+            <div className='plot'>
             { dataset ?
                 <Plot
                     data={[
@@ -85,10 +88,21 @@ export default function Map(){
                             y: dataset.map( item => { return item.Number }),
                         }
                     ]}
-                layout={{width:1000, height: 500, title:'Enregistrements en fonction de la fréquence'}}
+                layout={{
+                    width:1000, 
+                    height: 500, 
+                    title:'Enregistrements en fonction de la fréquence',
+                    xaxis:{
+                        title:'Bande de fréquences'
+                    },
+                    yaxis:{
+                        title:"Nombre d'enregistrements"
+                    }
+                }}
                 onClick={getNew}
                 />
             : <Loader />}
+            </div>
         </div>
     );
 }
