@@ -11,17 +11,9 @@ function Header() {
                 </div>
                 <ul className="nav-list" id="nav-list">
                     <li className="list-item">
-                        <a href="#">Map</a>
-                    </li>
-                    <li className="list-item">
-                        <a href="#">Explanations</a>
+                        <a href="/">Map</a>
                     </li>
                 </ul>
-                <div className="menu" id="toggle-button" onclick="toggleNav()">
-                    <div className="menu-line-1"></div>
-                    <div className="menu-line-2"></div>
-                    <div className="menu-line-3"></div>
-                </div>
             </header>
         </div>
     );

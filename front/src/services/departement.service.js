@@ -3,16 +3,25 @@ import axios from "axios";
 const ip = "192.168.0.100"
 const API_URL = "http://"+ ip+ ":5000/api/";
 
-const getDepartementChartById = async (id, tel) => {
+const getDepartementChartById = async (id, tel, fast) => {
     try {
-        return await axios.get(API_URL + "departement/0" + id + "/" + tel);
+        return await axios.get(API_URL + "departement?numero=0" + id + "&tel=" + tel + "&fast=" + fast);
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+const getDepartementTemp = async (id, tel, fast, dept) => {
+    try {
+        return await axios.get(API_URL + "bande?num=" + id + "&tel=" + tel + "&fast=" + fast + "&departement=" + dept);
     } catch (err) {
         console.error(err);
     }
 };
 
 const DepartementService = {
-    getDepartementChartById
+    getDepartementChartById,
+    getDepartementTemp
 }
 
 export default DepartementService;

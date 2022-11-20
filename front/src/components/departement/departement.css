@@ -22,6 +22,37 @@
     margin-left: 7%;
 }
 
+.departement h1{
+    text-align: center;
+    color: var(--bleu);
+}
+
+.departement .button{
+    display: inline-flex;
+    padding: 1.14286rem 2.53571rem;
+    border: 1px solid var(--violet);
+    border-radius: 2rem;
+    color: var(--violet);
+    background-color: transparent;
+    font-weight: bold;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.departement .button:hover{
+    border: 1px solid var(--violet);
+    color: var(--white);
+    background-color: var(--violet);
+}
+
+.departement .link{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    margin: 50px 0;
+}
+
 @media screen and (max-width: 1000px) {
     .chartPerformance {
         height: 400px;
