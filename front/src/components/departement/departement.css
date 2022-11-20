@@ -1,0 +1,29 @@
+.performance {
+    background: linear-gradient(
+            180deg,
+            rgba(13, 13, 43, 1) 60%,
+            rgba(43, 7, 110, 1) 90%
+    );
+    text-align: center;
+    color: white;
+}
+
+.titlePerformance {
+    font-size: 40px;
+}
+
+.textPerformance {
+    font-size: 24px;
+}
+
+.chartPerformance {
+    width: 80%;
+    height: 500px;
+    margin-left: 7%;
+}
+
+@media screen and (max-width: 1000px) {
+    .chartPerformance {
+        height: 400px;
+    }
+}
