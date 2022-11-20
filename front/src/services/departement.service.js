@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/departement/";
+
+
+const ip = "172.24.16.174"
+const API_URL = "http://"+ ip+ ":5000/api/departement/";
 
 const getDepartementChartById = async (id) => {
     try {
