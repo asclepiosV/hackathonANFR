@@ -40,28 +40,17 @@ def getOccurenceFREQ(departement, option, fast):
 
 
 # Bande en fonction du temps
-def NombreParMois(frequence, departement, option, fast):
+def NombreParMois(frequence):
     frequence = int(frequence)
-    region = str(departement)
     array = []
-    path = "./data/"
+    path = "../data/"
     for filename in os.listdir(path):
         f = os.path.join(path, filename)
-        if filename[0].isdigit() and os.path.isfile(f):
-            if fast:
-                p = 0.01
-                df = pd.read_csv(path + filename, sep=";",usecols=["CD_DPT", "ID_INTERV_FREQ","ID_SYSTEME"],
-                                     low_memory=False,skiprows=lambda i: i > 0 and random.random() > p)
-            else:
-                df = pd.read_csv(path + filename, sep=";", usecols=["CD_DPT", "ID_INTERV_FREQ","ID_SYSTEME"],
-                                 low_memory=False)
-            count = ((df['ID_INTERV_FREQ'] == frequence) & (df["CD_DPT"]==region)&(df["ID_SYSTEME"]==option)).sum()
-            if fast:
-                count *= 1/p
-
+        if os.path.isfile(f):
+            df = pd.read_csv(path + filename, sep=";", low_memory=False, encoding='cp1252')
+            count = (df['ID_INTERV_FREQ'] == frequence).sum()
             array.append({'Date': filename[0:10], 'Number': count})
     return array
-
 
 # Coordonnées departement
 def plotFrequenceDepartement(dep, id_systeme, fast):
@@ -198,10 +187,7 @@ def getRegion():
 @app.route('/api/bande', methods=['GET'])
 def getBande():
     number_band = request.args.get('num')
-    departement = request.args.get('departement')
-    option = request.args.get('tel')
-    fast = request.args.get('fast')
-    dictionnary = NombreParMois(int(number_band), departement, option, fast)
+    dictionnary = NombreParMois(int(number_band))
     return dictionnary
 
 
