@@ -1,0 +1,46 @@
+.navBar {
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+  
+.logo-container img {
+    height: 50px;
+    padding-left: 20px;
+}
+  
+.nav-list {
+    list-style-type: none;
+}
+  
+.nav-list .list-item {
+    display: inline-flex;
+    padding-right: 40px;
+}
+  
+.nav-list .list-item a {
+    text-decoration: none;
+    color: var(--violet);
+    font-size: 22px;
+}
+  
+.menu {
+    display: none;
+}
+  
+.menu-line-1,
+.menu-line-2,
+.menu-line-3 {
+    width: 20px;
+    height: 2px;
+    background-color: var(--primary);
+    margin-bottom: 4px;
+    transition: 0.3s ease;
+}
+
