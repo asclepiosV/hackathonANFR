@@ -14,12 +14,12 @@ CORS(app, support_credentials=True)
 def getOccurenceFREQ(departement, option, fast):
     if fast:
         p = 0.01
-        df = pd.read_csv("./data/2020_12_31_Extract.csv", sep=";", low_memory=False,
+        df = pd.read_csv("./data/2022_09_30_Extract.csv", sep=";", low_memory=False,
                          usecols=["CD_DPT", "ID_INTERV_FREQ", "ID_SYSTEME"],
                          skiprows=lambda i: i > 0 and random.random() > p
                          )
     else:
-        df = pd.read_csv("./data/2020_12_31_Extract.csv", sep=";", low_memory=False,
+        df = pd.read_csv("./data/2022_09_30_Extract.csv", sep=";", low_memory=False,
                          usecols=["CD_DPT", "ID_INTERV_FREQ", "ID_SYSTEME"]
                          )
     if option == 0:
@@ -49,7 +49,7 @@ def NombreParMois(frequence, departement, option, fast):
         f = os.path.join(path, filename)
         if filename[0].isdigit() and os.path.isfile(f):
             if fast:
-                p=0.01
+                p = 0.01
                 df = pd.read_csv(path + filename, sep=";",usecols=["CD_DPT", "ID_INTERV_FREQ","ID_SYSTEME"],
                                      low_memory=False,skiprows=lambda i: i > 0 and random.random() > p)
             else:
@@ -57,7 +57,7 @@ def NombreParMois(frequence, departement, option, fast):
                                  low_memory=False)
             count = ((df['ID_INTERV_FREQ'] == frequence) & (df["CD_DPT"]==region)&(df["ID_SYSTEME"]==option)).sum()
             if fast:
-                count*=1/p
+                count *= 1/p
 
             array.append({'Date': filename[0:10], 'Number': count})
     return array
@@ -67,7 +67,6 @@ def NombreParMois(frequence, departement, option, fast):
 def plotFrequenceDepartement(dep, id_systeme, fast):
     temp = "0"
     departement = temp + dep
-    start = time.time()
 
     def to_xy(lat, long, latMax, latMin, longMax, longMin):
         xMax = (longMax - longMin) * 30
@@ -108,13 +107,6 @@ def plotFrequenceDepartement(dep, id_systeme, fast):
     y = []
     points = []
 
-    if fast:
-        alpha = 0.5
-        size = 5
-    else:
-        alpha = 0.02
-        size = 3
-
     latMax = max(sublist[1] for sublist in list)
     latMin = min(sublist[1] for sublist in list)
     longMax = max(sublist[2] for sublist in list)
@@ -126,8 +118,6 @@ def plotFrequenceDepartement(dep, id_systeme, fast):
         x.append(xy[0])
         y.append(xy[1])
         points.append([xy[0], xy[1]])
-    print(3)
-    print("time = " + str((end - start)))
 
     return points
 
@@ -150,8 +140,8 @@ def plotFrequenceFrance(affectataire, id_systeme, fast):
         newXRange = xMax - xMin
         newYRange = yMax - yMin
 
-        x = (((long - longMin) * newXRange / oldXRange)) + xMin
-        y = (((lat - latMin) * newYRange / oldYRange)) + yMin
+        x = ((long - longMin) * newXRange / oldXRange) + xMin
+        y = ((lat - latMin) * newYRange / oldYRange) + yMin
         y *= -1
         y += yMax
 
@@ -177,10 +167,6 @@ def plotFrequenceFrance(affectataire, id_systeme, fast):
     x = []
     y = []
     points = []
-    if fast:
-        alpha = 1
-    else:
-        alpha = 0.01
 
     for i in range(len(list)):
         xy = to_xy(list[i][1], list[i][2])
