@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-
 const ip = "192.168.0.100"
 const API_URL = "http://"+ ip+ ":5000/api/";
 
